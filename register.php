@@ -1,18 +1,20 @@
 <?php
 
-   $host= "localhost";
-    $dbUsername = "root";
-    $dbPassword = "";
-    $dbname= "blood";
+   $host= "ec2-18-210-214-86.compute-1.amazonaws.com";
+    $dbUsername = "xjiqxvbnompbzr";
+    $dbPassword = "fc254a04a16cff74242a67d7198f88eba25aa5c56a9f2d7852f2c6a11dbd6910";
+    $dbname= "dbqsco5mek7nvu";
     
    //create connection
-   $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
+   $conn = pg_connect (" $host $dbUsername $dbPassword $dbname");
 if(!$conn)
 {
 	die('Connection failed!'.mysqli_error($conn));
 }
 
 ?>
+<?php
+    
 <?php
 $name = $_POST['name'];
 $age = $_POST['age'];
@@ -28,12 +30,12 @@ $last_donated = $_POST['last_donated'];
 $sql = "INSERT INTO registration(name, age, weight, height, blood_group, telephone, zone, last_donated)
         VALUES('$name', '$age','$weight','$height','$blood_group','$telephone','$zone','$last_donated')";
 
-        if(mysqli_query($conn,$sql))
+        if(pg_query($conn,$sql))
         {
         	header("Location:mesg.php");//index.html is the next page after registeration.U can use the same page instead
         }
         else
         {
-        	echo mysqli_error($conn);
+        	echo pg_last_error($conn);
         }
 ?>
