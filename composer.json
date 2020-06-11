@@ -1,10 +1,6 @@
 {
     "require": {
-        "php": "^7.1",
-    },
-    "require-dev": {
         "ext-pgsql": "*",
         "ext-pq": "*",
-        "phpunit/phpunit": "^8 | ^7",
-    },
+    }
 }
